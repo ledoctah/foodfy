@@ -3,6 +3,7 @@
 :root {
     --color-default: #111111;
     --color-hover: #4274fd;
+    --color-cards-author: #777777;
 }
 
 * {
@@ -14,6 +15,7 @@
 body {
     background: #ffffff;
     font-family: 'Roboto', 'Regular';
+    font-size: 18px;
     color: var(--color-default);
 }
 
@@ -79,20 +81,47 @@ header a:hover {
     margin-bottom: 0px;;
 }
 
-/*
 
-
-
-
-#wrapper {
-    background-color: #fbdfdb;
-    border-radius: 30px;
-    width: 940px;
-    height: 366px;
-    margin: auto;
-    text-align: left;
-    padding: 32px
+#popular-recipes h2{
+    margin-top: 32px;
+    font-size: 24px;
+    color: var(--color-default);
 }
 
+#foods-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    gap: 25px;
+}
 
-*/
+.food-card img {
+    width: 300px;
+    height: 140px;
+    border-radius: 15px;
+}
+
+.food-card h3 {
+    line-height: 21px;
+    margin-bottom: 5px;
+}
+
+.food-card p {
+    line-height: 16px;
+    margin-top: 5px;
+    font-size: 14px;
+    color: var(--color-cards-author);
+}
+
+footer {
+    margin-top: 60px;
+    background-color: #EEEEEE;
+    text-align: center;
+}
+
+footer p {
+    font-size: 14px;
+    line-height: 16px;
+    color: #999999;
+    padding: 20px;
+}
