@@ -94,6 +94,7 @@ header a:hover {
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     gap: 25px;
+    cursor: pointer;
 }
 
 .food-card img {
