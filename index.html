@@ -9,9 +9,9 @@
     <body>
         <div id="container">
             <header>
-                <a href="index.html"><img src="./assets/imgs/logo.png" alt="Logo do Foodfy"></a>
-                <a href="index.html">Sobre</a>
-                <a href="index.html">Receitas</a>
+                <a href="."><img src="./assets/imgs/logo.png" alt="Logo do Foodfy"></a>
+                <a href="./pages/about.html">Sobre</a>
+                <a href=".">Receitas</a>
             </header>
             <section id="presentation">
                 <section id="presentation-content">
@@ -26,7 +26,7 @@
                 <h2>Mais acessadas</h2>
                 <section id="foods-cards">
 
-                    <section class="food-card" id="burguer">
+                    <section class="food-card" id="burger">
                         <img src="./assets/imgs/burger.png" alt="Imagem de um triplo bacon burguer">
                         <h3>Triplo bacon burger</h3>
                         <p>por Jorge Relato</p>
@@ -64,9 +64,25 @@
 
                 </section>
             </section>
+        <div class="modal-overlay">
+
+            <div class="modal">
+                <img id="recipe-image" src="./" alt="Recipe image">
+                <h2 id="recipe-title">RECIPE TITLE</h2>
+                <p id="recipe-author">Author name</p>
+
+                <a id="close-modal" onclick="hideModal()">Voltar para receitas</a>
+            </div>
         </div>
+    
+        </div>
+
+            
+
+
         <footer>
             <p>Todos direitos reservados, receitas Foodfy</p>
         </footer>
+        <script src="./assets/js/scripts.js"></script>
     </body>
 </html>
