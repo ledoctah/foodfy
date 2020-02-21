@@ -14,7 +14,7 @@ nunjucks.configure('views', {
     noCache: true
 });
 
-server.get('/home', function(req, res){
+server.get('/', function(req, res){
     return res.render('home');
 });
 
