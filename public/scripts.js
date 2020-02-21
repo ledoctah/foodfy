@@ -27,7 +27,7 @@ function addListeners() {
             
             recipeData = searchObjectInRecipeArray(recipeKey);
             
-            modalOverlay.querySelector('#recipe-image').src = `/assets/imgs/${recipeData.key}.png`;
+            modalOverlay.querySelector('#recipe-image').src = `/imgs/${recipeData.key}.png`;
             modalOverlay.querySelector('#recipe-title').innerHTML = recipeData.title;
             modalOverlay.querySelector('#recipe-author').innerHTML = `por ${recipeData.authorName}`;
     
