@@ -3,7 +3,7 @@
 :root {
     --color-default: #111111;
     --color-hover: #4274fd;
-    --color-cards-author: #777777;
+    --color-author: #777777;
 }
 
 * {
@@ -112,7 +112,7 @@ header a:hover {
     line-height: 16px;
     margin-top: 5px;
     font-size: 14px;
-    color: var(--color-cards-author);
+    color: var(--color-author);
 }
 
 footer {
@@ -210,3 +210,69 @@ footer p {
     font-size: 18px;
     line-height: 28px;
 }
+
+/*=====RECIPE DESCRIPTION PAGE=====*/
+#recipe-description img {
+    width: 940px;
+    height: 280px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+#recipe-description h1 {
+    text-align: center;
+}
+
+#recipe-description h2 {
+    text-align: center;
+    color: var(--color-author);
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.steps-header {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.steps-header h3 {
+    font-size: 24px;
+    line-height: 28px;
+    padding-right: 5px;
+    display:inline;
+}
+
+.steps-header p {
+    font-size: 12px;
+    color: #999999;
+    line-height: 14px;
+    cursor: pointer;
+    display:inline;
+}
+
+.steps-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding-top: 10px;
+    font-size: 18px;
+    line-height: 28px;
+    color: #444444;
+}
+
+/*
+
+.steps-header h3 {
+    font-size: 24px;
+    line-height: 28px;
+    padding-right: 5px;
+}
+
+.steps-header p {
+    font-size: 12px;
+    color: #999999;
+    line-height: 14px;
+    cursor: pointer;
+}
+
+*/

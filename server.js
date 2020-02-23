@@ -26,6 +26,17 @@ server.get('/about', function(req, res){
     return res.render('about');
 });
 
+server.get('/recipes/:index', function(req, res) {
+    const recipeIndex = req.params.index;
+    const recipe = recipes[recipeIndex-1]
+
+    if(!recipe){
+        res.send('Recipe not found');
+    }
+
+    return res.render('recipe', { recipe });
+});
+
 server.listen(5000, function() {
     console.log('Server is running and waiting for connections.');
 })
