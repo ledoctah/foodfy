@@ -12,10 +12,9 @@
 
         <div class="steps-header">
             <h3>Ingredientes</h3>
-            <p>Esconder</p>
+            <p class="hide" id="ingredients">Esconder</p>
         </div>
-
-        <div class="steps-container">
+        <div class="steps-container" id="container-ingredients">
             {% for ingredient in recipe.ingredients %}
                 <li><span>{{ingredient}}</span></li>
             {% endfor %}
@@ -23,9 +22,9 @@
 
         <div class="steps-header">
             <h3>Modo de preparo</h3>
-            <p>Esconder</p>
+            <p class="hide" id="preparation">Esconder</p>
         </div>
-        <div class="steps-container">
+        <div class="steps-container" id="container-preparation">
             {% for step in recipe.preparation %}
                 <li>{{step}}</li>
             {% endfor %}
@@ -33,11 +32,11 @@
 
         <div class="steps-header">
             <h3>Informações adicionais</h3>
-            <p>Esconder</p>
+            <p class="hide" id="information">Esconder</p>
         </div>
-        <div class="steps-container">
+        <div class="steps-container" id="container-information">
             <p>{{recipe.information | replace('\n', '<br>')}}</p>
         </div>
-        
+
     </section>
 {% endblock %}
