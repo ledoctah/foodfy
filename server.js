@@ -31,10 +31,11 @@ server.get('/recipes/:index', function(req, res) {
     const recipe = recipes[recipeIndex-1]
 
     if(!recipe){
-        res.send('Recipe not found');
+        return res.send('Recipe not found');
     }
-
+    
     return res.render('recipe', { recipe });
+
 });
 
 server.listen(5000, function() {

@@ -23,7 +23,7 @@
 
             {% for recipe in recipes.slice(0, 6)%}
 
-                <section class="food-card" id="{{loop.index-1}}">
+                <section class="food-card" id="{{loop.index}}">
                     <img src="{{recipe.image}}" alt="recipe.title">
                     <h3>{{recipe.title}}</h3>
                     <p>por {{recipe.author}}</p>
@@ -33,17 +33,5 @@
 
         </section>
     </section>
-    
-    <div class="modal-overlay">
-
-        <div class="modal">
-            <img id="recipe-image" src="./" alt="Recipe image">
-            <h2 id="recipe-title">RECIPE TITLE</h2>
-            <p id="recipe-author">Author name</p>
-
-            <a id="close-modal" onclick="hideModal()">Voltar para receitas</a>
-        </div>
-    </div>
-
 
 {% endblock %}
