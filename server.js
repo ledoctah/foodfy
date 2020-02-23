@@ -15,11 +15,11 @@ nunjucks.configure('views', {
 });
 
 server.get('/', function(req, res){
-    return res.render('home');
+    return res.render('home', { recipes });
 });
 
 server.get('/recipes', function(req, res){
-    return res.render('recipes');
+    return res.render('recipes', { recipes });
 });
 
 server.get('/about', function(req, res){

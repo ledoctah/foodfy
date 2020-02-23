@@ -21,41 +21,15 @@
         <h2>Mais acessadas</h2>
         <section id="foods-cards">
 
-            <section class="food-card" id="burger">
-                <img src="/imgs/burger.png" alt="Imagem de um triplo bacon burguer">
-                <h3>Triplo bacon burger</h3>
-                <p>por Jorge Relato</p>
-            </section>
+            {% for recipe in recipes.slice(0, 6)%}
 
-            <section class="food-card" id="pizza">
-                <img src="/imgs/pizza.png" alt="Imagem de uma pizza 4 estações">
-                <h3>Pizza 4 estações</h3>
-                <p>por Fabiana Melo</p>
-            </section>
+                <section class="food-card" id="{{loop.index-1}}">
+                    <img src="{{recipe.image}}" alt="recipe.title">
+                    <h3>{{recipe.title}}</h3>
+                    <p>por {{recipe.author}}</p>
+                </section>
 
-            <section class="food-card" id="espaguete">
-                <img src="/imgs/espaguete.png" alt="Imagem de um espaguete ao alho">
-                <h3>Espaguete ao alho</h3>
-                <p>por Júlia Kinoto</p>
-            </section>
-
-            <section class="food-card" id="lasanha">
-                <img src="/imgs/lasanha.png" alt="Imagem de uma lasanha mac n' cheese">
-                <h3>Lasanha mac n’ cheese</h3>
-                <p>por Juliano Vieira</p>
-            </section>
-
-            <section class="food-card" id="doce">
-                <img src="/imgs/doce.png" alt="Imagem de um docinho pão-do-céu">
-                <h3>Docinhos pão-do-céu</h3>
-                <p>por Ricardo Golvea</p>
-            </section>
-
-            <section class="food-card" id="asinhas">
-                <img src="/imgs/asinhas.png" alt="Imagem de uma asinha de frango ao barbecue">
-                <h3>Asinhas de frango ao barbecue</h3>
-                <p>por Júlia Kinoto</p>
-            </section>
+            {% endfor %}
 
         </section>
     </section>
