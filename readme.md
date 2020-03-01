@@ -32,7 +32,7 @@ E algumas dependências de desenvolvimento:
 * Nodemon
 * Npm-run-all
 
-Todas essas dependências podem ser visualizadas dentro do arquivo [package.json](/package.json) e para instalá-las, basta rodar o comando npm install.
+Todas essas dependências podem ser visualizadas dentro do arquivo [package.json](/package.json) e para instalá-las, basta rodar o comando `npm install`.
 
 ## Etapas do desenvolvimento
 * [Construindo o Foodfy](https://github.com/Rocketseat/bootcamp-launchbase-desafios-02/blob/master/desafios/02-foodfy.md) (Concluído)
