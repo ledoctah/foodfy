@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css?family=Roboto:400,700,700i&display=swap";
+@import "https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap";
 
 :root {
     --color-default: #111111;
@@ -25,15 +25,15 @@ body {
 }
 
 header {
-    padding: 30px 0px;
+    padding: 32px 0px;
 }
 
 header img {
-    padding-right: 8.7%;
+    padding-right: 32px;
 }
 
 header a {
-    padding-right: 2%;
+    padding-right: 32px;
     font-size: 16px;
     color: var(--color-default);
     line-height: 28px;
@@ -41,6 +41,11 @@ header a {
     transition: color 500ms;
 }
 
+header a:first-child {
+    padding-right: 0px;
+    font-size: 0px;
+    line-height: 0px;
+}
 
 header a:hover {
     color: var(--color-hover);
@@ -128,69 +133,6 @@ footer p {
     padding: 20px;
 }
 
-.modal-overlay {
-    background-color: rgba(0,0,0,0.5);
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    opacity: 0;
-    visibility: hidden;
-}
-
-.modal {
-    background-color: #ffffff;
-    width: 900px;
-    height: 500px;
-    margin: auto auto;
-    border-radius: 30px;
-    text-align: center;
-    padding: 32px;
-    position: relative;
-}
-
-.modal img {
-    width: 800px;
-    border-radius: 15px;
-    padding-bottom: 20px;
-}
-
-.modal h2 {
-    padding-bottom: 15px;
-    font-size: 24px;
-    color: var(--color-default);
-}
-
-.modal p {
-    line-height: 16px;
-    font-size: 14px;
-    color: var(--color-cards-default);
-    padding-bottom: 22px;
-}
-
-#close-modal {
-    font-size: 16px;
-    color: var(--color-default);
-    line-height: 28px;
-    text-decoration: none;
-    transition: color 500ms;
-    cursor: pointer;
-}
-
-#close-modal:hover {
-    color: var(--color-hover);
-    transition: color 500ms;
-}
-
-.modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.2s ease-in;
-}
-
 #content h1 {
     font-family: 'Roboto', 'Bold';
     font-size: 24px;
@@ -268,19 +210,182 @@ footer p {
     opacity: 0;
 }
 
-/*
-
-.steps-header h3 {
-    font-size: 24px;
-    line-height: 28px;
-    padding-right: 5px;
+/*====ADMIN PAGES STYLE====*/
+.admin-header {
+    background-color: #000000;
 }
 
-.steps-header p {
-    font-size: 12px;
-    color: #999999;
-    line-height: 14px;
+.admin-header img {
+    margin-left: 16.5%;
+}
+
+.admin-container {
+    margin: 32px 16.5%;
+}
+
+.admin-container h1 {
+    font-size: 24px;
+    line-height: 28px;
+    color: #111111;
+    display: inline-block;
+}
+
+button[type="submit"],
+.button {
+    background-color: #6558C3;
+    border-radius: 4px;
+    padding: 8px 16px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Roboto', 'Bold';
+    float: right;
     cursor: pointer;
 }
 
-*/
+.button,
+.recipe-info a {
+    text-decoration: none;
+}
+
+button[type="submit"] + button[type="submit"] {
+    margin-right: 8px;
+}
+
+button[type="submit"]:nth-child(3) {
+    background-color: #DC4747;
+}
+
+.item {
+    margin-top: 2%
+}
+
+.item div {
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: bold;
+}
+
+.item div:first-child {
+    margin-bottom: 0.7%;
+}
+
+.item input,
+.item textarea {
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    width: 100%;
+    height: 49px;
+    font-size: 16px;
+}
+
+.item input + input {
+    margin-top: 8px;
+}
+
+.item textarea {
+    height: initial;
+}
+
+.item button[type="button"],
+.recipe-info a {
+    font-size: 16px;
+    color: #6558C3;
+    font-weight: bold;
+    background-color: transparent;
+    margin-top: 16px;
+    cursor: pointer;
+}
+
+textarea {
+    font-family: 'Roboto', 'Regular';
+    font-size: 16px;
+}
+
+.admin-container img {
+    width: 100%;
+    height: 28.17%;
+    border-radius: 15px;
+    margin-top: 32px;
+}
+
+.admin-container h2 {
+    font-size: 36px;
+    line-height: 42px;
+    margin-top: 32px;
+}
+
+.admin-container h3 {
+    font-size: 20px;
+    line-height: 24px;
+    margin-top: 4px;
+    font-weight: normal;
+    color: var(--color-author)
+}
+
+.recipe-presentation {
+    text-align: center;
+}
+
+.admin-container ul {
+    margin-top: 16px;
+    margin-bottom: 32px;
+    list-style-position: inside;
+    list-style: none;
+}
+
+.admin-container ul li::before {
+    content: "-";
+    padding-right: 8px;
+}
+
+.admin-container ul li,
+.admin-container p {
+    font-size: 18px;
+    color: #444444;
+    line-height: 28px;
+}
+
+.admin-container p {
+    margin-top: 16px;
+}
+
+/*====ADMIN RECIPE CARDS====*/
+.admin_recipe-cards {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 64px;
+    row-gap: 16px;
+    align-items: center;
+}
+
+.admin_recipe-card img {
+    margin: 0;
+    width: 230px;
+    height: 80px;
+}
+
+.admin_recipe-card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.recipe-info {
+    margin-left: 32px;
+}
+
+.recipe-info h4 {
+    font-size: 18px;
+    line-height: 21px;
+    color: #111111;
+    font-weight: normal;
+}
+
+.recipe-info h5 {
+    font-size: 14px;
+    line-height: 16px;
+    color: var(--color-author);
+    font-weight: normal;
+    padding-bottom: 8px;
+}

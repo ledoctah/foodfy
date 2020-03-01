@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "npm-run-all nodemon browsersync",
+    "start": "npm-run-all -p nodemon browsersync",
     "nodemon": "nodemon server.js",
     "browsersync": "browser-sync start --proxy http://localhost:5000 --files 'public, views'"
   },
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/ledoctah/foodfy#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "method-override": "^3.0.0",
     "nunjucks": "^3.2.0"
   },
   "devDependencies": {
