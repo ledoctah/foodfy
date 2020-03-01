@@ -1,4 +1,4 @@
-# <img src="/public/imgs/logo.png">
+# <img src="/public/imgs/logo_black.png">
 
 <p align="center">
   <img src="/public/imgs/chef.png">
