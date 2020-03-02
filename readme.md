@@ -26,6 +26,7 @@ Para a elaboração desse projeto, as seguintes tecnologias foram utilizadas:
 Para o projeto rodar de forma correta, é preciso instalar as seguintes dependências:
 * Express (server backend)
 * Nunjucks (template engine)
+* Method Override
 
 E algumas dependências de desenvolvimento:
 * Browser-sync
