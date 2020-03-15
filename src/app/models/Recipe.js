@@ -99,6 +99,32 @@ module.exports = {
         });
 
     },
+    paginate(params) {
+        
+        const { filter, limit, offset, callback } = params;
+
+        let query = "",
+            filterQuery = "",
+            totalQuery = "(SELECT COUNT(*) FROM recipes) AS total";
+
+        if(filter) {
+            filterQuery = `WHERE title ILIKE '%${filter}%'`;
+
+            totalQuery = `(SELECT COUNT(*) FROM recipes ${filterQuery}) AS total`;
+        }
+
+        query = `SELECT recipes.*, ${totalQuery}, chefs.name AS chef_name FROM recipes
+        INNER JOIN chefs ON chefs.id = recipes.chef_id
+        ${filterQuery}
+        LIMIT ${limit} OFFSET ${offset}`;
+
+        db.query(query, null, function(err, results) {
+            if(err) throw `Database error! ${err}`;
+
+            callback(results.rows);
+        });
+
+    },
     chefsSelectOptions(callback) {
         db.query(`SELECT id,name FROM chefs`, function(err, results) {
             if(err) throw `Database error! ${err}`;

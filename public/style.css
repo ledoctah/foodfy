@@ -521,3 +521,26 @@ header {
     font-size: 24px;
     line-height: 28px;
 }
+
+/*PAGINATION*/
+.pagination {
+    margin-top: 32px;
+    text-align: center;
+}
+
+.pagination a,
+.pagination span {
+    text-decoration: none;
+}
+
+.pagination .active {
+    font-weight: bold;
+}
+
+.pagination a+a {
+    margin-left: 16px;
+}
+
+.pagination span {
+    margin: 0px 16px;
+}

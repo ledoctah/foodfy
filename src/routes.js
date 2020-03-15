@@ -5,8 +5,8 @@ const site = require('./app/controllers/site');
 const recipes = require('./app/controllers/recipes');
 const chefs = require('./app/controllers/chefs');
 
-routes.get('/', site.index);
-routes.get('/recipes', site.recipes);
+routes.get('/', site.trending);
+routes.get('/recipes', site.index);
 routes.get('/chefs', site.chefs);
 routes.get('/about', site.about);
 routes.get('/recipes/:id', site.show);
