@@ -26,6 +26,9 @@ body {
 
 header {
     padding: 32px 0px;
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
 }
 
 header img {
@@ -50,6 +53,10 @@ header a:first-child {
 header a:hover {
     color: var(--color-hover);
     transition: color 500ms;
+}
+
+header .active {
+    font-weight: bold;
 }
 
 #presentation {
@@ -104,8 +111,9 @@ header a:hover {
 
 .food-card img {
     width: 300px;
-    height: 95px;
+    height: 140px;
     border-radius: 15px;
+    object-fit: cover;
 }
 
 .food-card h3 {
@@ -124,6 +132,9 @@ footer {
     margin-top: 60px;
     background-color: #EEEEEE;
     text-align: center;
+    position: absolute;
+    width: 100%;
+    left: 0;
 }
 
 footer p {
@@ -159,6 +170,7 @@ footer p {
     height: 280px;
     border-radius: 15px;
     margin-bottom: 20px;
+    object-fit: cover;
 }
 
 #recipe-description h1 {
@@ -217,6 +229,19 @@ footer p {
 
 .admin-header img {
     margin-left: 16.5%;
+    margin-right: 32px;
+}
+
+.admin-header a {
+    text-transform: uppercase;
+    color: #999999;
+    font-weight: bold;
+    font-size: 15px;
+    margin-right: 16px;
+}
+
+.admin-header .active {
+    color: white
 }
 
 .admin-container {
@@ -244,7 +269,8 @@ button[type="submit"],
 }
 
 .button,
-.recipe-info a {
+.recipe-info a,
+.chef-card .chef-info a {
     text-decoration: none;
 }
 
@@ -271,12 +297,21 @@ button[type="submit"]:nth-child(3) {
 }
 
 .item input,
-.item textarea {
+.item textarea,
+.item select {
     border: 1px solid #DDDDDD;
     border-radius: 4px;
     width: 100%;
     height: 49px;
     font-size: 16px;
+}
+
+.item .placeholder {
+    color: #999999;
+}
+
+.item .placeholder option {
+    color: black;
 }
 
 .item input + input {
@@ -288,7 +323,8 @@ button[type="submit"]:nth-child(3) {
 }
 
 .item button[type="button"],
-.recipe-info a {
+.recipe-info a,
+.chef-card .chef-info a {
     font-size: 16px;
     color: #6558C3;
     font-weight: bold;
@@ -304,9 +340,10 @@ textarea {
 
 .admin-container img {
     width: 100%;
-    height: 28.17%;
+    max-height: 379px;
     border-radius: 15px;
     margin-top: 32px;
+    object-fit: cover;
 }
 
 .admin-container h2 {
@@ -362,13 +399,14 @@ textarea {
 
 .admin_recipe-card img {
     margin: 0;
-    width: 230px;
+    width: 172px;
     height: 80px;
+    object-fit: cover;
 }
 
 .admin_recipe-card {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 172px 2fr;
 }
 
 .recipe-info {
@@ -388,4 +426,98 @@ textarea {
     color: var(--color-author);
     font-weight: normal;
     padding-bottom: 8px;
+}
+
+/*CHEFS ADMIN*/
+.chef-information img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    margin: 32px auto;
+}
+
+.chef-presentation {
+    text-align: center;
+}
+
+.chef_recipes-container {
+    margin-top: 32px;
+}
+
+.chef-cards {
+    margin-top: 32px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 32px;
+}
+
+.chef-card {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    align-items: center;
+}
+
+.chef-card img{
+    margin: 0px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+.chef-card .chef-info {
+    margin-left: 32px;
+}
+
+.chef-card h4 {
+    color: #111111;
+    font-size: 18px;
+    line-height: 21px;
+    font-weight: normal;
+    margin-bottom: 8px;
+}
+
+/*CHEFS SITE PAGE*/
+.chefs-container img {
+    object-fit: cover;
+}
+
+.chefs-container .chef-info {
+    margin-left: 16px;
+}
+
+.chefs-container .chef-info {
+    font-size: 14px;
+    color: #666666;
+    line-height: 16px;
+}
+
+/*SEARCH*/
+header {
+    position: relative;
+}
+
+.search {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 8px;
+    position: absolute;
+    right: 0px;
+}
+
+.search input {
+    font-size: 14 px;
+    padding: 0px 16px;
+    height: 100%;
+    border-radius: 4px;
+    border: 1px solid #DDDDDD;
+}
+
+.search-params {
+    margin-top: 32px;
+    margin-bottom: 16px;
+    font-size: 24px;
+    line-height: 28px;
 }

@@ -16,6 +16,11 @@
                 <a href="/"><img src="/imgs/logo_black.png" alt="Logo do Foodfy"></a>
                 <a href="/about">Sobre</a>
                 <a href="/recipes">Receitas</a>
+                <a href="/chefs">Chefs</a>
+                <form class="search" action="/recipes" action="GET">
+                    <input type="text" name="filter" placeholder="Buscar uma receita">
+                    <button class="button">Buscar</button>
+                </form>
             </header>
         
             {% block content %}
@@ -23,10 +28,6 @@
             {% endblock %}
 
         </div>
-
-        <footer>
-            <p>Todos direitos reservados, receitas Foodfy</p>
-        </footer>
 
         <script src="/scripts.js"></script>
     </body>

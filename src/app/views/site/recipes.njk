@@ -1,4 +1,4 @@
-{% extends "layout_client.njk" %}
+{% extends "layout_site.njk" %}
 
 {% block head %}
     <title>
@@ -9,13 +9,16 @@
 {% block content %}
 
     <section id="recipes">
+        {% if filter | length %}
+        <h1 class="search-params">Buscando por “{{filter}}”</h1>
+        {% endif %}
         <section id="foods-cards">
 
             {% for recipe in recipes %}
-                <section class="food-card" id="{{loop.index}}">
+                <section class="food-card" id="{{recipe.id}}">
                     <img src="{{recipe.image}}" alt="{{recipe.title}}">
                     <h3>{{recipe.title}}</h3>
-                    <p>por {{recipe.author}}</p>
+                    <p>por {{recipe.chef_name}}</p>
                 </section>
             {% endfor %}
             

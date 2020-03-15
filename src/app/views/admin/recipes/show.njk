@@ -5,12 +5,15 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Receita: {{recipe.title}}</h1>
-    <a href="/admin/recipes/{{recipe.index}}/edit" class="button">Editar receita</a>
-    <img src="{{recipe.image}}" alt="Imagem da receita {{recipe.title}} por {{recipe.author}}">
+    <div class="recipe-presentation">
+        <h1>Receita: {{recipe.title}}</h1>
+        <a href="/admin/recipes/{{recipe.id}}/edit" class="button">Editar receita</a>
+        <img src="{{recipe.image}}" alt="Imagem da receita {{recipe.title}} por {{recipe.author}}">
+    </div>
+
     <div class="recipe-presentation">
         <h2>{{recipe.title}}</h2>
-        <h3>por {{recipe.author}}</h3>
+        <h3>por {{recipe.chef_name}}</h3>
     </div>
     <h1>Ingredientes</h1>
     <ul>

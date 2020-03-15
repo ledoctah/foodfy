@@ -1,4 +1,4 @@
-{% extends "layout_client.njk" %}
+{% extends "layout_site.njk" %}
 
 {% block head %}
     <title>
@@ -21,12 +21,12 @@
         <h2>Mais acessadas</h2>
         <section id="foods-cards">
 
-            {% for recipe in recipes.slice(0, 6)%}
+            {% for recipe in recipes %}
 
-                <section class="food-card" id="{{loop.index}}">
-                    <img src="{{recipe.image}}" alt="recipe.title">
+                <section class="food-card" id="{{recipe.id}}">
+                    <img src="{{recipe.image}}" alt="{{recipe.title}}">
                     <h3>{{recipe.title}}</h3>
-                    <p>por {{recipe.author}}</p>
+                    <p>por {{recipe.chef_name}}</p>
                 </section>
 
             {% endfor %}
@@ -34,4 +34,7 @@
         </section>
     </section>
 
+    <footer>
+        <p>Todos direitos reservados, receitas Foodfy</p>
+    </footer>
 {% endblock %}

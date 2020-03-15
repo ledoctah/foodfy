@@ -1,4 +1,4 @@
-{% extends "layout_client.njk" %}
+{% extends "layout_site.njk" %}
 
 {% block head %}
     <title>{{recipe.title}} por {{recipe.author}} | Foodfy</title>
@@ -8,7 +8,7 @@
     <section id="recipe-description">
         <img src="{{recipe.image}}" alt="recipe.title" id="recipe-image">
         <h1>{{recipe.title}}</h1>
-        <h2>por {{recipe.author}}</h2>
+        <h2>por {{recipe.chef_name}}</h2>
 
         <div class="steps-header">
             <h3>Ingredientes</h3>

@@ -15,8 +15,8 @@
                 </div>
                 <div class="recipe-info">
                     <h4>{{recipe.title}}</h4>
-                    <h5>por {{recipe.author}}</h5>
-                    <a href="/admin/recipes/{{loop.index}}">Visualizar</a>
+                    <h5>por {{recipe.chef_name}}</h5>
+                    <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
                 </div>
             </div>
         {% endfor %}

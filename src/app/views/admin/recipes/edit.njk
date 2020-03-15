@@ -9,10 +9,10 @@
         <h1>Editando receita</h1>
         <button type="submit" form="form-put">Salvar receita</button>
         <button type="submit" form="form-delete">Deletar</button>
-        {% include "admin/fields.njk" %}
-        <input type="hidden" name="index" value="{{recipe.index}}">
+        {% include "admin/recipes/fields.njk" %}
+        <input type="hidden" name="id" value="{{recipe.id}}">
     </form>
     <form id="form-delete" method="POST" action="/admin/recipes?_method=DELETE">
-        <input type="hidden" name="index" value="{{recipe.index}}">
+        <input type="hidden" name="id" value="{{recipe.id}}">
     </form>
 {% endblock %}
