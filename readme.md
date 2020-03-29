@@ -42,7 +42,7 @@ Todas essas dependências podem ser visualizadas dentro do arquivo [package.json
 * [Refatorando o Foodfy](https://github.com/Rocketseat/bootcamp-launchbase-desafios-03) (Concluído)
 * [Admin Foodfy](https://github.com/Rocketseat/bootcamp-launchbase-desafios-04/blob/master/desafios/04-admin-foodfy.md) (Concluído)
 * [Persistindo dados do Foodfy](https://github.com/Rocketseat/bootcamp-launchbase-desafios-05/blob/master/desafios/05-persistindo-dados-foodfy.md) (Concluído)
-* [Upload de imagens](https://github.com/Rocketseat/bootcamp-launchbase-desafios-07) (Não iniciado)
+* [Upload de imagens](https://github.com/Rocketseat/bootcamp-launchbase-desafios-07) (Concluído)
 * [Apresentação e organização de receitas no Foodfy](https://github.com/Rocketseat/bootcamp-launchbase-desafios-08) (Não iniciado)
 * [Sistema de login Foodfy](https://github.com/Rocketseat/bootcamp-launchbase-desafios-10) (Não iniciado)
 
