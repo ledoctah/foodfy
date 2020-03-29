@@ -24,7 +24,7 @@
             {% for recipe in recipes %}
 
                 <section class="food-card" id="{{recipe.id}}">
-                    <img src="{{recipe.image}}" alt="{{recipe.title}}">
+                    <img src="{{recipe.file_path}}" alt="{{recipe.title}}">
                     <h3>{{recipe.title}}</h3>
                     <p>por {{recipe.chef_name}}</p>
                 </section>
@@ -33,8 +33,4 @@
 
         </section>
     </section>
-
-    <footer>
-        <p>Todos direitos reservados, receitas Foodfy</p>
-    </footer>
 {% endblock %}

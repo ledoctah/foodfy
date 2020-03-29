@@ -5,13 +5,17 @@
 {% endblock %}
 
 {% block content %}
-    <form id="form-put" method="POST" action="/admin/chefs?_method=PUT">
+    <form id="form-put" method="POST" action="/admin/chefs?_method=PUT" enctype="multipart/form-data">
         <h1>Editando chef</h1>
+
         <button type="submit" form="form-put">Salvar chef</button>
         <button type="submit" form="form-delete">Deletar</button>
+
         {% include "admin/chefs/fields.njk" %}
+        
         <input type="hidden" name="id" value="{{chef.id}}">
     </form>
+    
     <form id="form-delete" method="POST" action="/admin/chefs?_method=DELETE">
         <input type="hidden" name="id" value="{{chef.id}}">
     </form>

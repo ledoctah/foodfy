@@ -8,7 +8,23 @@
     <div class="recipe-presentation">
         <h1>Receita: {{recipe.title}}</h1>
         <a href="/admin/recipes/{{recipe.id}}/edit" class="button">Editar receita</a>
-        <img src="{{recipe.image}}" alt="Imagem da receita {{recipe.title}} por {{recipe.author}}">
+        
+        <div class="gallery">
+            <div class="highlight">
+                {% if not files[0] %}
+                    <img src="http://placehold.it/500x500?text=RECEITA SEM FOTOS">
+                {% else %}
+                    <img src="{{files[0].src}}" alt="{{files[0].name}}">
+                {% endif %}
+            </div>
+
+            <div class="gallery-preview">
+                {% for image in files %}
+                    <img src="{{image.src}}" alt="image.name" {% if loop.index0 == 0 %} class="active" {% endif %} onclick="ImageGallery.setImage(event)">
+                {% endfor %}
+            </div>
+        </div>
+
     </div>
 
     <div class="recipe-presentation">

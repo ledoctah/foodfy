@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <form id="form-put" method="POST" action="/admin/recipes?_method=PUT">
+    <form id="form-put" method="POST" action="/admin/recipes?_method=PUT" enctype="multipart/form-data">
         <h1>Editando receita</h1>
         <button type="submit" form="form-put">Salvar receita</button>
         <button type="submit" form="form-delete">Deletar</button>
