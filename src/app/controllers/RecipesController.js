@@ -4,10 +4,6 @@ const RecipeFile = require('../models/RecipeFile');
 
 module.exports = {
     async index(req, res) {
-        
-        /*Recipe.all(function(recipes) {
-            return res.render('admin/recipes/index', { recipes });
-        })*/
 
         let { filter, page, limit } = req.query;
 

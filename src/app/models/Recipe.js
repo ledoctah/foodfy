@@ -13,7 +13,8 @@ module.exports = {
         
         filter = filter || '';
 
-        const query = `SELECT *, (SELECT name FROM chefs WHERE chefs.id = recipes.chef_id) as chef_name FROM recipes WHERE title ILIKE '%${filter}%'`;
+        const query = `SELECT *, (SELECT name FROM chefs WHERE chefs.id = recipes.chef_id) as chef_name FROM recipes WHERE title ILIKE '%${filter}%'
+        ORDER BY updated_at DESC`;
 
         return db.query(query);
 
@@ -96,6 +97,7 @@ module.exports = {
         query = `SELECT recipes.*, ${totalQuery}, chefs.name AS chef_name, ${fileQuery} FROM recipes
         INNER JOIN chefs ON chefs.id = recipes.chef_id
         ${filterQuery}
+        ORDER BY updated_at DESC
         LIMIT ${limit} OFFSET ${offset}`;
 
         return db.query(query);

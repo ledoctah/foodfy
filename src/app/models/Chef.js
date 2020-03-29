@@ -3,7 +3,7 @@ const db = require('../../config/db');
 module.exports = {
     all() {
         return db.query(`SELECT chefs.*, (SELECT COUNT(*) FROM recipes WHERE chef_id = chefs.id) AS total_recipes, path AS file_path FROM chefs 
-        LEFT JOIN files ON files.id = chefs.file_id ORDER BY created_at ASC`);
+        LEFT JOIN files ON files.id = chefs.file_id ORDER BY created_at DESC`);
     },
     create(data) {
         
