@@ -1,7 +1,10 @@
+const dotenv = require('dotenv');
 const express = require('express');
 const nunjucks = require('nunjucks');
 const methodOverride = require('method-override');
 const flash = require('express-flash');
+
+dotenv.config(); //load environment variables
 
 const routes = require('./routes');
 const session = require('./config/session');
