@@ -1,6 +1,9 @@
 const faker = require('faker/locale/pt_BR');
 const fs = require('fs');
 const path = require('path');
+const dotenv = require('dotenv');
+
+dotenv.config(); //load environment variables
 
 const { hash } = require('bcryptjs');
 const { fake } = require('faker/locale/pt_BR');
