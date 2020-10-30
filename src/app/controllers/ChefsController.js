@@ -4,18 +4,10 @@ const User = require('../models/User');
 
 module.exports = {
     async index(req, res) {
-        
-        const results = await Chef.all();
+        const chefs = await Chef.all();
 
-        const chefs = [];
-
-        for(let chef of results.rows) {
-            chef = {
-                ...chef,
-                file_src: `${req.protocol}://${req.headers.host}${chef.file_path.replace('public', '')}`
-            }
-
-            chefs.push(chef);
+        for(let chef of chefs) {
+            chef .file_src = `${req.protocol}://${req.headers.host}${chef.file_path.replace('public', '')}`;
         }
 
         const loggedUser = await User.findOne({
@@ -25,12 +17,9 @@ module.exports = {
         });
 
         return res.render('admin/chefs/index', { chefs, loggedUser });
-    
     },
     create(req, res) {
-
         return res.render('admin/chefs/create');
-        
     },
     async post(req, res) {
         
@@ -38,44 +27,31 @@ module.exports = {
             ...req.files[0]
         }
 
-        let results = await File.create(file);
-        const file_id = results.rows[0].id;
+        const file_id = await File.create(file);
 
         const data = {
             ...req.body,
             file_id
         }
 
-        results = await Chef.create(data);
-        const chefId = results.rows[0].id;
+        const chefId = await Chef.create(data);
 
         return res.redirect(`/admin/chefs/${chefId}`);
 
     },
     async show(req, res) {
-        
         const { id } = req.params;
 
-        let results = await Chef.find(id);
+        const chef = await Chef.find(id);
 
-        const chef = results.rows[0];
+        const file = await Chef.files(chef.file_id);
 
-        results = await Chef.files(chef.file_id);
-
-        const file = {
-            ...results.rows[0],
-            src: `${req.protocol}://${req.headers.host}${results.rows[0].path.replace('public', '')}`
-        }
+        file.src = `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`;
         
-        results = await Chef.findRecipesByChefId(chef.id)
+        const recipes = await Chef.findRecipesByChefId(chef.id);
 
-        const recipes = [];
-
-        for(result of results.rows) {
-            recipes.push({
-                ...result,
-                src: `${req.protocol}://${req.headers.host}${result.path.replace('public', '')}`
-            });
+        for(recipe of recipes) {
+            recipe.src = `${req.protocol}://${req.headers.host}${recipe.path.replace('public', '')}`;
         }
 
         const loggedUser = await User.findOne({
@@ -91,18 +67,13 @@ module.exports = {
 
         const { id } = req.params;
 
-        let results = await Chef.find(id);
-
-        const chef = results.rows[0];
+        const chef = await Chef.find(id);
 
         if(!chef) return res.send('Chef not found');
 
-        results = await Chef.files(chef.file_id);
+        const file = await Chef.files(chef.file_id);
 
-        const file = {
-            ...results.rows[0],
-            src: `${req.protocol}://${req.headers.host}${results.rows[0].path.replace('public', '')}`
-        }
+        file.src = `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`;
 
         return res.render('admin/chefs/edit', { chef, file });
 
@@ -116,9 +87,7 @@ module.exports = {
                 ...req.files[0]
             }
 
-            const results = await File.create(file);
-
-            fileId = results.rows[0].id;
+            fileId = await File.create(file);
         }
 
         const chef = {
@@ -144,7 +113,13 @@ module.exports = {
         const recipes = Chef.findRecipesByChefId(id);
 
         if(!recipes.length){
+            const chef = await Chef.find(id);
+            
+            const file = await Chef.files(chef.file_id);
+
             await Chef.delete(id);
+            
+            await File.delete(file.id);
 
             return res.redirect(`/admin/chefs`);
         } else {

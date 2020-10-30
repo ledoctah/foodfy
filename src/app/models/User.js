@@ -1,8 +1,10 @@
 const db = require('../../config/db');
 
 module.exports = {
-    all() {
-        return db.query('SELECT * FROM users');
+    async all() {
+        const results = await db.query('SELECT * FROM users');
+
+        return results.rows;
     },
     async create({name, email, is_admin, password}) {
         const query = `INSERT INTO users(name, email, is_admin, password) VALUES ($1, $2, $3, $4)`;

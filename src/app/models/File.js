@@ -5,7 +5,9 @@ module.exports = {
     async create({filename, path}) {
         const query = `INSERT INTO files (name, path) VALUES ($1, $2) RETURNING id`;
 
-        return db.query(query, [filename, path]);
+        const results = await db.query(query, [filename, path]);
+
+        return results.rows[0].id;
     },
     async delete(id) {
 

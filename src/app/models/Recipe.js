@@ -19,15 +19,16 @@ module.exports = {
         return db.query(query);
 
     },
-    trending() {
+    async trending() {
         
-        return db.query(`SELECT recipes.*, chefs.name AS chef_name, (SELECT path FROM files INNER JOIN recipe_files ON recipe_files.file_id = files.id 
+        const results = await db.query(`SELECT recipes.*, chefs.name AS chef_name, (SELECT path FROM files INNER JOIN recipe_files ON recipe_files.file_id = files.id 
             WHERE recipe_id = recipes.id LIMIT 1) AS file_path FROM recipes INNER JOIN chefs ON recipes.chef_id = chefs.id 
             LIMIT 6`);
 
+        return results.rows;
+
     },
-    create(data) {
-        
+    async create(data) {
         const query = `INSERT INTO recipes (chef_id, title, ingredients, preparation, information, user_id) VALUES ($1, $2, $3, $4, $5, $6) 
         RETURNING id`;
 
@@ -40,23 +41,28 @@ module.exports = {
             data.user_id
         ];
 
-        return db.query(query, values);
+        const results = await db.query(query, values);
 
+        return results.rows[0].id;
     },
-    find(id) {
+    async find(id) {
 
         const query = `SELECT recipes.*, chefs.name AS chef_name FROM recipes
         INNER JOIN chefs ON chefs.id = recipes.chef_id
         WHERE recipes.id = $1`
 
-        return db.query(query, [id]);
+        const results = await db.query(query, [id]);
+
+        return results.rows[0];
     },
-    files(id) {
+    async files(id) {
         const query = `SELECT files.* FROM files 
         INNER JOIN recipe_files ON recipe_files.file_id = files.id
         WHERE recipe_id = $1`;
 
-        return db.query(query, [id]);
+        const results = await db.query(query, [id]);
+
+        return results.rows;
     },
     update(data) {
 
@@ -80,7 +86,7 @@ module.exports = {
         return db.query('DELETE FROM recipes WHERE id = $1', [id]);
 
     },
-    paginate(params) {
+    async paginate(params) {
         
         const { filter, limit, offset } = params;
 
@@ -102,10 +108,14 @@ module.exports = {
         ORDER BY updated_at DESC
         LIMIT ${limit} OFFSET ${offset}`;
 
-        return db.query(query);
+        const results = await db.query(query);
+
+        return results.rows;
 
     },
-    chefsSelectOptions() {
-        return db.query(`SELECT id,name FROM chefs`);
+    async chefsSelectOptions() {
+        const results = await db.query(`SELECT id, name FROM chefs`);
+
+        return results.rows;
     }
 };

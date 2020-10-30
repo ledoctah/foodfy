@@ -13,8 +13,7 @@ module.exports = {
             }
         })
         
-        const results = await User.all();
-        const users = results.rows;
+        const users = await User.all();
         
         return res.render('admin/users/index', { users, loggedUser: user });
     

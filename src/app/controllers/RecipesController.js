@@ -18,24 +18,16 @@ module.exports = {
             offset,
         }
 
-        const results = await Recipe.paginate(params);
-
-        const recipes = [];
+        const recipes = await Recipe.paginate(params);
 
         const pagination = {
-            total: results.rows[0] ? Math.ceil(results.rows[0].total / limit) : 0,
+            total: recipes[0] ? Math.ceil(recipes[0].total / limit) : 0,
             page,
             filter
         }
 
-
-        for(let recipe of results.rows) {
-            recipe = {
-                ...recipe,
-                src: `${req.protocol}://${req.headers.host}${(recipe.file_path).replace('public', '')}`
-            }
-
-            recipes.push(recipe);
+        for(let recipe of recipes) {
+            recipe.src = `${req.protocol}://${req.headers.host}${(recipe.file_path).replace('public', '')}`;
         }
 
         return res.render('admin/recipes/index', { recipes, pagination });
@@ -43,28 +35,21 @@ module.exports = {
     
     },
     async create(req, res) {
-
-        const results = await Recipe.chefsSelectOptions();
-
-        const chefs = results.rows;
+        const chefs = await Recipe.chefsSelectOptions();
         
         return res.render('admin/recipes/create', { chefs });
         
     },
     async post(req, res) {
-
         const ingredients = [];
         const preparation = [];
 
         for(ingredient of req.body.ingredients) {
-            if(ingredient != '')
-                ingredients.push(ingredient);
-
+            if(ingredient != '') ingredients.push(ingredient);
         }
 
         for(step of req.body.preparation) {
-            if(step != '')
-                preparation.push(step);
+            if(step != '') preparation.push(step);
         }
 
         const data = {
@@ -74,21 +59,15 @@ module.exports = {
             user_id: req.session.userId
         }
 
-        const results = await Recipe.create(data);
-        
-        const recipe_id = results.rows[0].id;
+        const recipe_id = await Recipe.create(data);
 
         const filesPromise = req.files.map(async file => {
-            const results = await File.create(file);
-            const file_id = results.rows[0].id;
-            
-            const recipeFile = {
+            const file_id = await File.create(file);
+
+            await RecipeFile.create({
                 file_id,
                 recipe_id
-            }
-
-            await RecipeFile.create(recipeFile);
-            
+            });
         });
 
         await Promise.all(filesPromise);
@@ -99,66 +78,48 @@ module.exports = {
 
         const { id } = req.params;
 
-        let results = await Recipe.find(id);
-
-        const recipe = results.rows[0];
+        let recipe = await Recipe.find(id);
 
         if(!recipe) return res.send('Recipe not found');
 
-        results = await Recipe.files(id);
+        files = await Recipe.files(id);
 
-        const files = results.rows.map(file => ({
-            ...file,
-            src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
-        }));
+        for(file of files) {
+            file.src = `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`;
+        }
 
         const loggedUser = await User.findOne({
             where: {
                 id: req.session.userId
             }
-        })
+        });
 
         return res.render('admin/recipes/show', { recipe, files, loggedUser });
 
     },
     async edit(req, res) {
-
         const { id } = req.params;
 
-        let results = await Recipe.find(id);
-
-        const recipe = results.rows[0];
-
-        results = await Recipe.chefsSelectOptions();
-
-        const chefs = results.rows;
+        const recipe = await Recipe.find(id);
 
         if(!recipe) return res.send('Recipe not found');
 
-        results = await Recipe.files(id);
+        const chefs = await Recipe.chefsSelectOptions();
 
-        const files = results.rows.map(file => ({
-            ...file,
-            src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
-        }));
+        const files = await Recipe.files(id);
+
+        for(file of files) {
+            file.src = `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`;
+        }
 
         return res.render('admin/recipes/edit', { recipe, chefs, files });
-
     },
-    async put(req, res) {
-        
-        const keys = Object.keys(req.body);
-    
+    async put(req, res) {    
         const { id: recipe_id } = req.body
-
-        for(key of keys) {
-            if((key != 'information' && key != 'removed_files') && req.body[key] == '') return res.send('Please, fill all fields');
-        }
 
         if(req.files.length != 0) {
             const filesPromise = req.files.map(async file => {
-                const results = await File.create(file);
-                const file_id = results.rows[0].id;
+                const file_id = await File.create(file);
                 
                 const recipeFile = {
                     file_id,
@@ -166,7 +127,6 @@ module.exports = {
                 }
 
                 await RecipeFile.create(recipeFile);
-                
             });
 
             await Promise.all(filesPromise);
@@ -189,7 +149,6 @@ module.exports = {
             await Promise.all(removedFilesPromise);
         }
 
-
         await Recipe.update(req.body);
 
         return res.redirect(`/admin/recipes/${req.body.id}`);
@@ -199,9 +158,9 @@ module.exports = {
         
         const { id } = req.body;
 
-        let results = await Recipe.files(id);
+        const files = await Recipe.files(id);
 
-        const filesPromise = results.rows.map(async file => {
+        const filesPromise = files.map(async file => {
             const files = {
                 file_id: file.id,
                 recipe_id: id

@@ -3,7 +3,6 @@ const Chef = require('../models/Chef');
 
 module.exports = {
     async index(req, res){
-
         let { filter, page, limit } = req.query;
 
         page = page || 1;
@@ -16,12 +15,11 @@ module.exports = {
             offset
         }
 
-        const results = await Recipe.paginate(params);
+        const recipes = await Recipe.paginate(params);
 
-        const recipes = results.rows.map(recipe => ({
-            ...recipe,
-            file_path: `${req.protocol}://${req.headers.host}${recipe.file_path.replace('public', '')}`
-        }));
+        for(recipe of recipes) {
+            recipe.file_path = `${req.protocol}://${req.headers.host}${recipe.file_path.replace('public', '')}`;
+        }
 
         const pagination = {
             total: recipes[0] ? Math.ceil(recipes[0].total / limit) : 0,
@@ -30,29 +28,24 @@ module.exports = {
         }
 
         return res.render('site/recipes', { recipes, pagination });
-
-        
     },
     async trending(req, res){
-        
-        const results = await Recipe.trending();
+        const recipes = await Recipe.trending();
 
-        const recipes = results.rows.map(recipe => ({
-            ...recipe,
-            file_path: `${req.protocol}://${req.headers.host}${recipe.file_path.replace('public', '')}`
-        }));
+        for(recipe of recipes) {
+            recipe.file_path = `${req.protocol}://${req.headers.host}${recipe.file_path.replace('public', '')}`;
+        }
 
         return res.render('site/index', { recipes });
 
     },
     async chefs(req, res){
 
-        const results = await Chef.all();
+        const chefs = await Chef.all();
 
-        const chefs = results.rows.map(chef => ({
-            ...chef,
-            file_src: `${req.protocol}://${req.headers.host}${chef.file_path.replace('public', '')}`
-        }));
+        for(chef of chefs) {
+            chef.file_src = `${req.protocol}://${req.headers.host}${chef.file_path.replace('public', '')}`;
+        }
         
         return res.render('site/chefs', { chefs });
 
@@ -66,16 +59,13 @@ module.exports = {
         
         const { id } = req.params;
 
-        let results = await Recipe.find(id);
+        const recipe = await Recipe.find(id);
 
-        const recipe = results.rows[0];
+        const files = await Recipe.files(id);
 
-        results = await Recipe.files(id);
-
-        const files = results.rows.map(file => ({
-            ...file,
-            src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
-        }));
+        for(file of files) {
+            file.src = `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`;
+        }
 
         if(!recipe){
             return res.send('Recipe not found');

@@ -6,7 +6,6 @@ function isImageUploaded(files) {
 
 module.exports = {
     async adminOnly(req, res, next) {
-
         const user = await User.findOne({
             where: {
                 id: req.session.userId
@@ -22,7 +21,6 @@ module.exports = {
         next();
     },
     async post(req, res, next) {
-
         const keys = Object.keys(req.body);
 
         for(key of keys) {
@@ -57,7 +55,6 @@ module.exports = {
         next();
     },
     async put(req, res, next) {
-
         const keys = Object.keys(req.body);
     
         for(key of keys) {
