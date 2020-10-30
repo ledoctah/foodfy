@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block head %} {% endblock %}
+    <link rel="stylesheet" href="/styles/session.css">
+    <link rel="stylesheet" href="/styles/messages.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="session-header">
+        <img src="/imgs/logo_black.png" alt="" srcset="">
+    </div>
+
+    {% include "parts/messages.njk" %}
+
+    <div class="container session">
+        {% block content %}{% endblock content %}
+    </div>
+</body>
+</html>

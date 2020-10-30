@@ -4,14 +4,25 @@
         {% block head %}
         {% endblock %}
         <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="/styles/messages.css">
         <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
     </head>
     <body>
         <header class="admin-header">
             <img src="/imgs/logo_white.png" alt="Logo do Foodfy">
-            <a href="/admin/recipes">Receitas</a>
-            <a href="/admin/chefs">Chefs</a>
+            <nav>
+                <a href="/admin/recipes">Receitas</a>
+                <a href="/admin/chefs">Chefs</a>
+                <a href="/admin/users">Usuários</a>
+            </nav>
+            <div class="logout">
+                <form action="/logout" method="post">
+                    <button type="submit">SAIR</button>
+                </form>
+            </div>
         </header>
+
+        {% include "parts/messages.njk" %}
 
         <div class="admin-container">
             {% block content %}

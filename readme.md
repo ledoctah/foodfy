@@ -44,7 +44,7 @@ Todas essas dependências podem ser visualizadas dentro do arquivo [package.json
 * [Persistindo dados do Foodfy](https://github.com/Rocketseat/bootcamp-launchbase-desafios-05/blob/master/desafios/05-persistindo-dados-foodfy.md) (Concluído)
 * [Upload de imagens](https://github.com/Rocketseat/bootcamp-launchbase-desafios-07) (Concluído)
 * [Apresentação e organização de receitas no Foodfy](https://github.com/Rocketseat/bootcamp-launchbase-desafios-08) (Concluído)
-* [Sistema de login Foodfy](https://github.com/Rocketseat/bootcamp-launchbase-desafios-10) (Não iniciado)
+* [Sistema de login Foodfy](https://github.com/Rocketseat/bootcamp-launchbase-desafios-10) (Concluído)
 
 ## Licença
 O projeto está sob a licença MIT. Mais detalhes podem ser encontrados no arquivo [LICENSE](LICENSE.md).

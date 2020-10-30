@@ -1,5 +1,6 @@
 const Chef = require('../models/Chef');
 const File = require('../models/File');
+const User = require('../models/User');
 
 module.exports = {
     async index(req, res) {
@@ -17,7 +18,13 @@ module.exports = {
             chefs.push(chef);
         }
 
-        return res.render('admin/chefs/index', { chefs });
+        const loggedUser = await User.findOne({
+            where: {
+                id: req.session.userId
+            }
+        });
+
+        return res.render('admin/chefs/index', { chefs, loggedUser });
     
     },
     create(req, res) {
@@ -26,13 +33,6 @@ module.exports = {
         
     },
     async post(req, res) {
-        const keys = Object.keys(req.body);
-    
-        for(key of keys) {
-            if(req.body[key] == '') return res.send('Please, fill all fields');
-        }
-
-        if(req.files.length == 0) return res.send('Please, send at least one image');
         
         const file = {
             ...req.files[0]
@@ -69,9 +69,22 @@ module.exports = {
         
         results = await Chef.findRecipesByChefId(chef.id)
 
-        const recipes = results.rows;
+        const recipes = [];
 
-        return res.render('admin/chefs/show', { chef, recipes, file });
+        for(result of results.rows) {
+            recipes.push({
+                ...result,
+                src: `${req.protocol}://${req.headers.host}${result.path.replace('public', '')}`
+            });
+        }
+
+        const loggedUser = await User.findOne({
+            where: {
+                id: req.session.userId
+            }
+        });
+
+        return res.render('admin/chefs/show', { chef, recipes, file, loggedUser });
 
     },
     async edit(req, res) {
@@ -95,12 +108,6 @@ module.exports = {
 
     },
     async put(req, res) {
-        
-        const keys = Object.keys(req.body);
-    
-        for(key of keys) {
-            if(req.body[key] == '' && key != 'removed_files') return res.send('Please, fill all fields');
-        }
 
         let fileId;
 

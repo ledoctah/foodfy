@@ -44,7 +44,11 @@ module.exports = {
     },
     findRecipesByChefId(id) {
 
-        const query = `SELECT * FROM recipes WHERE chef_id = $1`;
+        const query = `SELECT recipes.*, MIN(files.path) AS path FROM recipes
+            INNER JOIN recipe_files ON recipe_files.recipe_id = recipes.id
+            INNER JOIN files ON recipe_files.file_id = files.id
+            WHERE chef_id = $1
+            GROUP BY recipes.id`;
 
         return db.query(query, [id]);
 

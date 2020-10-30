@@ -7,8 +7,11 @@
 {% block content %}
     <div class="recipe-presentation">
         <h1>Receita: {{recipe.title}}</h1>
+
+        {% if loggedUser.id == recipe.user_id or loggedUser.is_admin %}
         <a href="/admin/recipes/{{recipe.id}}/edit" class="button">Editar receita</a>
-        
+        {% endif %}
+
         <div class="gallery">
             <div class="highlight">
                 {% if not files[0] %}

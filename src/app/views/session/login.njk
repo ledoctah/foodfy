@@ -1,0 +1,25 @@
+{% extends "session/layout.njk" %}
+
+{% block head %}
+<title>Login | Foodfy</title>
+{% endblock head %}
+
+{% block content %}
+<form action="/login" method="POST">
+
+    <h1>Iniciar Sessão</h1>
+    <div class="item">
+        <div>Email</div>
+        <input type="email" class="{{ 'error' if messages.error }}" name="email" value="{{user.email}}" placeholder="Digite seu email">
+    </div>
+
+    <div class="item">
+        <div>Senha</div>
+        <input type="password" class="{{ 'error' if messages.error }}" name="password" placeholder="Digite sua senha">
+    </div>
+
+    <a href="/forgot-password">Perdeu a senha?</a>
+    <button type="submit">Acessar</button>
+
+</form>
+{% endblock content %}

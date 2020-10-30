@@ -1,0 +1,16 @@
+{% extends "layout_admin.njk" %}
+
+{% block head %}
+        <title>Meu perfil | Admin Foodfy</title>
+{% endblock %}
+
+{% block content %}
+    <form id="form-post" method="POST" action="/admin/users?_method=PUT">
+        <div class="form-header">
+        <h1>Bem vindo, {{user.name.split(' ')[0]}}</h1>
+            <button type="submit" form="form-post">Salvar</button>
+        </div>
+        {% include "admin/user_area/fields.njk" %}
+        <input type="hidden" name="id" value="{{user.id}}">
+    </form>
+{% endblock %}

@@ -1,0 +1,5 @@
+{% if messages.error or messages.success or messages.warning or error or success %}
+    <div class="message {{ 'error' if messages.error or error }} {{ 'success' if messages.success or success }} {{ 'warning' if messages.warning or warning }}">
+        {{ messages.error or messages.success or messages.warning or error or success or warning }}
+    </div>
+{% endif %}

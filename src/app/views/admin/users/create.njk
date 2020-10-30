@@ -1,0 +1,16 @@
+{% extends "layout_admin.njk" %}
+
+{% block head %}
+        <title>Criar Usuário | Admin Foodfy</title>
+{% endblock %}
+
+{% block content %}
+    <form id="form-post" method="POST" action="/admin/users">
+        <div class="form-header">
+        <h1>Criar usuário</h1>
+            <a href="/admin/users/" class="button cancel">Cancelar</a>
+            <button type="submit">Salvar</button>
+        </div>
+        {% include "admin/users/fields.njk" %}
+    </form>
+{% endblock %}

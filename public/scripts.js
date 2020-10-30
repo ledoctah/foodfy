@@ -81,13 +81,13 @@ if(addIngredientButton && addPreparationStepButton) {
     addPreparationStepButton.addEventListener('click', addPreparationStep)
 }
 
-if(deleteForm) {
-    function askForConfirmationToDelete(evt) {
-        const confirmation = confirm('Deseja realmente deletar?');
-    
-        if(!confirmation) evt.preventDefault();
-    }
+function askForConfirmationToDelete(evt) {
+    const confirmation = confirm('Deseja realmente deletar?');
 
+    if(!confirmation) evt.preventDefault();
+}
+
+if(deleteForm) {
     deleteForm.addEventListener('submit', askForConfirmationToDelete);
 }
 

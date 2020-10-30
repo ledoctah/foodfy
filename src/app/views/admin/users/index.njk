@@ -1,0 +1,29 @@
+{% extends "layout_admin.njk" %}
+
+{% block head %}
+        <title>Gerenciar Usuários | Admin Foodfy</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Usuários</h1>
+    {% if loggedUser.is_admin %}
+    <a href="/admin/users/create" class="button">Novo</a>
+    {% endif %}
+    <div class="user-cards">
+        {% for user in users %}
+            <div class="user-card">
+                <div class="user-info">
+                    <h4>{{user.name}}</h4>
+                    <h5>{{user.email}}</h5>
+                </div>
+                <div class="user-actions">
+                    <form action="/admin/users?_method=DELETE" method="POST" onsubmit="askForConfirmationToDelete(event)">
+                        <a href="/admin/users/{{user.id}}/edit" class="edit-button">Editar</a>
+                        <input type="hidden" name="id" value={{user.id}}>
+                        <button type="submit">Remover</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

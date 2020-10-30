@@ -1,6 +1,7 @@
 const Recipe = require('../models/Recipe');
 const File = require('../models/File');
 const RecipeFile = require('../models/RecipeFile');
+const User = require('../models/User');
 
 module.exports = {
     async index(req, res) {
@@ -22,7 +23,7 @@ module.exports = {
         const recipes = [];
 
         const pagination = {
-            total: Math.ceil(results.rows[0].total / limit),
+            total: results.rows[0] ? Math.ceil(results.rows[0].total / limit) : 0,
             page,
             filter
         }
@@ -52,24 +53,16 @@ module.exports = {
     },
     async post(req, res) {
 
-        const keys = Object.keys(req.body);
+        const ingredients = [];
+        const preparation = [];
 
-        for(key of keys) {
-            if((key != 'information' && key != 'removed_files') && req.body[key] == '') return res.send('Please, fill all fields');
-        }
-
-        if(req.files.length == 0) return res.send('Please, send at least one image');
-
-        let ingredients = [];
-        let preparation = [];
-
-        for(let ingredient of req.body.ingredients) {
+        for(ingredient of req.body.ingredients) {
             if(ingredient != '')
                 ingredients.push(ingredient);
 
         }
 
-        for(let step of req.body.preparation) {
+        for(step of req.body.preparation) {
             if(step != '')
                 preparation.push(step);
         }
@@ -77,7 +70,8 @@ module.exports = {
         const data = {
             ...req.body,
             ingredients,
-            preparation
+            preparation,
+            user_id: req.session.userId
         }
 
         const results = await Recipe.create(data);
@@ -118,8 +112,13 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
         }));
 
+        const loggedUser = await User.findOne({
+            where: {
+                id: req.session.userId
+            }
+        })
 
-        return res.render('admin/recipes/show', { recipe, files });
+        return res.render('admin/recipes/show', { recipe, files, loggedUser });
 
     },
     async edit(req, res) {

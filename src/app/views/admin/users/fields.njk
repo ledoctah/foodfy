@@ -1,0 +1,19 @@
+<div class="item" style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 30px">
+    <div class="item-container">
+        <div>Nome</div>
+        <input type="text" name="name" value="{{user.name}}" placeholder="Digite o nome completo">
+    </div>
+
+    <div class="item-container">
+        <div>Email</div>
+        <input type="email" name="email" value="{{user.email}}" placeholder="Digite o email">
+    </div>
+</div>
+
+<div class="item">
+    <label class="checkbox">
+        <input type="checkbox" name="is_admin" {{'checked' if user.is_admin }}>
+        <span></span>
+        Administrador
+    </label>
+</div>

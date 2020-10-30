@@ -1,0 +1,21 @@
+{% extends "layout_admin.njk" %}
+
+{% block head %}
+        <title>Atualizar Usuário | Admin Foodfy</title>
+{% endblock %}
+
+{% block content %}
+    <form id="form-post" method="POST" action="/admin/users?_method=PUT">
+        <div class="form-header">
+        <h1>Atualizar usuário</h1>
+            <button type="submit" form="form-post">Salvar</button>
+            <button type="submit" form="form-delete">Deletar</button>
+        </div>
+        {% include "admin/users/fields.njk" %}
+        <input type="hidden" name="id" value="{{user.id}}">
+    </form>
+
+    <form id="form-delete" method="POST" action="/admin/users?_method=DELETE">
+        <input type="hidden" name="id" value={{user.id}}>
+    </form>
+{% endblock %}
