@@ -24,18 +24,9 @@ Para a elaboração desse projeto, as seguintes tecnologias foram utilizadas:
 * Postgres SQL
 
 ## Dependências
-Para o projeto rodar de forma correta, é preciso instalar as seguintes dependências:
-* Express (server backend)
-* Nunjucks (template engine)
-* Method Override
+Para o projeto rodar de forma correta, é preciso instalar as seguintes softwares na máquina:
+* NodeJS
 * Postgresql
-
-E algumas dependências de desenvolvimento:
-* Browser-sync
-* Nodemon
-* Npm-run-all
-
-Todas essas dependências podem ser visualizadas dentro do arquivo [package.json](/package.json) e para instalá-las, basta rodar o comando `npm install`.
 
 ## Etapas do desenvolvimento
 * [Construindo o Foodfy](https://github.com/Rocketseat/bootcamp-launchbase-desafios-02/blob/master/desafios/02-foodfy.md) (Concluído)
