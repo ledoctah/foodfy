@@ -26,16 +26,16 @@ routes.get('/recipes/create', RecipesController.create);
 routes.post('/recipes', multer.array("photo", 5), RecipeValidator.post, RecipesController.post);
 routes.get('/recipes/:id', RecipesController.show);
 routes.get('/recipes/:id/edit', RecipeValidator.canChange, RecipesController.edit);
-routes.put('/recipes', RecipeValidator.canChange, multer.array("photo", 5), RecipeValidator.put, RecipesController.put);
+routes.put('/recipes', multer.array("photo", 5), RecipeValidator.canChange, RecipeValidator.put, RecipesController.put);
 routes.delete('/recipes', RecipeValidator.canChange, RecipesController.delete);
 
 //admin chefs route
 routes.get('/chefs', ChefsController.index);
 routes.get('/chefs/create', ChefValidator.adminOnly, ChefsController.create);
-routes.post('/chefs', ChefValidator.adminOnly, multer.array("avatar", 1), ChefValidator.post, ChefsController.post);
+routes.post('/chefs', multer.array("avatar", 1), ChefValidator.adminOnly, ChefValidator.post, ChefsController.post);
 routes.get('/chefs/:id', ChefsController.show);
 routes.get('/chefs/:id/edit', ChefValidator.adminOnly, ChefsController.edit);
-routes.put('/chefs', ChefValidator.adminOnly, multer.array("avatar", 1), ChefValidator.put, ChefsController.put);
+routes.put('/chefs', multer.array("avatar", 1), ChefValidator.adminOnly, ChefValidator.put, ChefsController.put);
 routes.delete('/chefs', ChefValidator.adminOnly, ChefsController.delete);
 
 module.exports = routes;

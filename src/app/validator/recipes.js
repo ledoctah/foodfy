@@ -10,7 +10,7 @@ module.exports = {
             }
         });
 
-        const recipe = await Recipe.find(req.params.id);
+        const recipe = await Recipe.find(req.params.id || req.body.id);
 
         if(!user.is_admin && user.id != recipe.user_id) {
             req.flash('error', 'Somente um administrador ou o criador da receita podem fazer alterações');

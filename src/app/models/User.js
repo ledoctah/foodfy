@@ -7,9 +7,11 @@ module.exports = {
         return results.rows;
     },
     async create({name, email, is_admin, password}) {
-        const query = `INSERT INTO users(name, email, is_admin, password) VALUES ($1, $2, $3, $4)`;
+        const query = `INSERT INTO users(name, email, is_admin, password) VALUES ($1, $2, $3, $4) RETURNING id`;
 
-        return db.query(query, [name, email, is_admin, password]);
+        const results = await db.query(query, [name, email, is_admin, password]);
+
+        return results.rows[0].id;
     },
     async findOne(filters) {
         let query = `SELECT * FROM users`;
