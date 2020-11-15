@@ -35,7 +35,7 @@ Para rodar a aplicação você precisa seguir os seguintes passos:
 3. No arquivo ".env" preencha os campos "DB_username", "DB_password" e "DB_hostname"
 4. Execute o comando ```npm install``` para instalar as dependências do projeto
 5. Execute o comando ```node .\seeds.js``` para popular o banco de dados
-6. Execute o comando ```npm start"``` para rodar a aplicação
+6. Execute o comando ```npm start``` para rodar a aplicação
 7. Entre em http://localhost:5000
 8. Utilize o usuário admin@foodfy.com / senha: 123 para acessar a rota http://localhost:5000/admin
 
