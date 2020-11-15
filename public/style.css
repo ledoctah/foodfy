@@ -33,6 +33,17 @@ body {
     margin-bottom: 32px;
 }
 
+#container .error {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 80%;
+}
+
+#container .error a {
+    text-decoration: underline;
+}
+
 header {
     padding: 32px 0px;
     display: inline-flex;
